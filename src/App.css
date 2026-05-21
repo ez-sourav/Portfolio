@@ -6,3 +6,14 @@
    font-family: "Nunito Sans", sans-serif;
    letter-spacing: 0.8px;
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
