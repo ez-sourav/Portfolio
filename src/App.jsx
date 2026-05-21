@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
 import About from './Components/About';
+import Skill from './Components/Skill';
 
 const App = () => {
 
@@ -26,10 +27,11 @@ const App = () => {
     return () => observer.disconnect();
   }, []);
   return (
-    <div className='bg-[#0B0B0C] min-h-screen text-white overflow-x-hidden'>
-      <Navbar/>
-      <Hero/>
-      <About/>
+    <div className='min-h-screen bg-[#0B0B0C] text-white'>
+      <Navbar />
+      <Hero />
+      <About />
+      <Skill />
     </div>
   )
 }
