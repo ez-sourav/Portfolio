@@ -7,7 +7,7 @@ const Contact = () => {
       id="contact"
       className="py-10 px-4 sm:px-6 lg:px-8"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         <div className="reveal text-center">
           <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto"></div>

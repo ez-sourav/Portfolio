@@ -7,7 +7,7 @@ const Hero = () => {
             id="hero"
             className="min-h-screen flex items-center  px-4 sm:px-6 lg:px-8 pt-20"
         >
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-12 items-center py-10 md:py-0">
+            <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-12 items-center py-10 md:py-0">
 
                 {/* Left side */}
                 <div className="order-2 md:order-1 text-center md:text-left reveal">
