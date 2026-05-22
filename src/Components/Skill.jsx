@@ -83,7 +83,7 @@ const Skill = () => {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              {["Git","GitHub", "Cloudinary","Docker","AWS (Learning)"].map((item) => (
+              {["Git", "GitHub", "Cloudinary", "Docker", "AWS (Learning)"].map((item) => (
                 <span
                   key={item}
                   className="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-sm"

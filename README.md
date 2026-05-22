@@ -21,12 +21,14 @@ A modern, responsive developer portfolio built with React and Tailwind CSS to sh
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js
 - Tailwind CSS
 - JavaScript (ES6+)
 - Vite
 
 ### Tools
+
 - Git & GitHub
 - VS Code
 - Vercel
