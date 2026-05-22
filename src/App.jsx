@@ -7,7 +7,7 @@ import Project from './Components/Project';
 import Education from './Components/Education';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
-
+ 
 const App = () => {
 
   useEffect(() => {
