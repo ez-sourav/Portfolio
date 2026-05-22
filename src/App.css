@@ -6,14 +6,35 @@
    font-family: "Nunito Sans", sans-serif;
    letter-spacing: 0.8px;
 }
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+}
+section {
+  scroll-margin-top: 90px;
+}
 
 .reveal {
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s ease;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
 }
