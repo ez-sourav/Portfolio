@@ -30,7 +30,7 @@ const Skill = () => {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              {["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"].map(
+              {["HTML5", "CSS", "JavaScript ES6+", "React", "Tailwind CSS"].map(
                 (item) => (
                   <span
                     key={item}
@@ -58,6 +58,7 @@ const Skill = () => {
                 "Node.js",
                 "Express.js",
                 "MongoDB",
+                "REST APIs",
                 "Firebase",
                 "Supabase",
               ].map((item) => (

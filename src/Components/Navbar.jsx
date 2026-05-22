@@ -34,7 +34,7 @@ const Navbar = () => {
 
             <h1 className="text-2xl sm:text-3xl font-bold">
               <a href="#hero" className="text-orange-500">
-                Portfolio
+                Sourav Biswas
               </a>
             </h1>
 

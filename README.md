@@ -1,16 +1,73 @@
-# React + Vite
+# 🚀 Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive developer portfolio built with React and Tailwind CSS to showcase my skills, projects, education, and journey as a Full Stack Developer.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🔗 https://sourav04.vercel.app
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Modern Dark Theme UI
+- Fully Responsive Design
+- Smooth Scrolling Navigation
+- Skills Showcase
+- Project Showcase with Live Demo & GitHub Links
+- Education Section
+- Resume Download
+- Contact Section
+- Optimized for Desktop, Tablet, and Mobile
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+- React.js
+- Tailwind CSS
+- JavaScript (ES6+)
+- Vite
+
+### Tools
+- Git & GitHub
+- VS Code
+- Vercel
+
+## 📂 Project Structure
+
+```bash
+src/
+├── Components/
+│   ├── Navbar.jsx
+│   ├── Hero.jsx
+│   ├── About.jsx
+│   ├── Skill.jsx
+│   ├── Projects.jsx
+│   ├── Education.jsx
+│   └── Contact.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+## 🚀 Getting Started
+
+### Clone Repository
+
+```bash
+git clone https://github.com/ez-sourav/Portfolio.git
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+⭐ If you like this project, consider giving it a star on GitHub.

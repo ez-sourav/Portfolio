@@ -6,11 +6,11 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
 
         <h3 className="text-xl font-bold text-orange-500">
-          Portfolio
+          Sourav Biswas
         </h3>
 
         <p className="text-gray-400 mt-3 text-sm">
-          © {new Date().getFullYear()} Sourav Biswas. All rights reserved.
+          © {new Date().getFullYear()} All rights reserved.
         </p>
 
       </div>
