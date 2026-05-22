@@ -7,12 +7,12 @@ const Hero = () => {
             id="hero"
             className="min-h-screen flex items-center  px-4 sm:px-6 lg:px-8 pt-20"
         >
-            <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-12 items-center py-10 md:py-0">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-12 items-center py-10 md:py-0">
 
                 {/* Left side */}
                 <div className="order-2 md:order-1 text-center md:text-left reveal">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3">
-                    <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
+                        <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
                         Hi, I'm <span className="text-orange-500">Sourav Biswas</span>
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-300 mb-8">Full Stack Developer</p>
@@ -24,9 +24,13 @@ const Hero = () => {
                         >
                             View Projects
                         </a>
-                        <button className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition duration-300">
+                        <a
+                            href="/ResumeSouravBiswas.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition duration-300">
                             <Download size={18} /> Resume
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -34,7 +38,7 @@ const Hero = () => {
                 <div className="order-1 md:order-2 flex justify-center  lg:justify-end reveal  delay-200">
                     <div className="relative">
                         <img
-                            src="/pic.jpg"
+                            src="/pic.jpeg"
                             alt="Sourav Biswas"
                             className="w-[260px] h-[320px] sm:w-[300px] sm:h-[370px] md:w-[340px] md:h-[410px] lg:w-[340px] lg:h-[420px] object-cover rounded-2xl border border-orange-500/20"
                         />
