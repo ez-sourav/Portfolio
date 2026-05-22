@@ -11,8 +11,8 @@ const Hero = () => {
 
                 {/* Left side */}
                 <div className="order-2 md:order-1 text-center md:text-left reveal">
-                    <div className="w-16 h-1 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3">
+                    <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
                         Hi, I'm <span className="text-orange-500">Sourav Biswas</span>
                     </h1>
                     <p className="text-xl sm:text-2xl text-gray-300 mb-8">Full Stack Developer</p>
@@ -31,7 +31,7 @@ const Hero = () => {
                 </div>
 
                 {/* Right side */}
-                <div className="order-1 md:order-2 flex justify-center  lg:justify-end reveal">
+                <div className="order-1 md:order-2 flex justify-center  lg:justify-end reveal  delay-200">
                     <div className="relative">
                         <img
                             src="/pic.jpg"

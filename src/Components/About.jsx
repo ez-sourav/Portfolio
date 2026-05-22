@@ -11,9 +11,9 @@ const About = () => {
         {/* Left Side */}
         <div className='reveal text-center md:text-left'>
 
-          <div className="w-12 h-1 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
+          <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
 
-          <h2 className='text-3xl sm:text-4xl font-bold mb-6'>
+          <h2 className='text-3xl sm:text-4xl font-medium mb-6'>
             About Me
           </h2>
 
@@ -27,7 +27,6 @@ const About = () => {
             scalable digital experiences with React, Node.js, and MongoDB.
           </p>
 
-          {/* Stats */}
           <div className='flex justify-center md:justify-start gap-10 sm:gap-14'>
 
             <div>
@@ -42,7 +41,7 @@ const About = () => {
 
             <div>
               <h3 className='text-3xl sm:text-4xl font-bold text-orange-500 mb-1'>
-                15+
+                10+
               </h3>
 
               <p className='text-gray-500 text-sm sm:text-base'>
@@ -54,7 +53,7 @@ const About = () => {
         </div>
 
         {/* Right Side */}
-        <div className='reveal flex justify-center md:justify-end'>
+        <div className='reveal  delay-200 flex justify-center md:justify-end'>
 
           <div className='relative group'>
 

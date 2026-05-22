@@ -10,7 +10,7 @@ const Skill = () => {
       <div className="max-w-6xl mx-auto">
 
         <div className="reveal text-center md:text-left mb-10">
-          <div className="w-12 h-1 bg-orange-500 mb-4 mx-auto md:mx-0"></div>
+          <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
 
           <h2 className="text-3xl sm:text-4xl font-medium">
             Skills & Expertise
@@ -82,7 +82,7 @@ const Skill = () => {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              {["GitHub", "Docker", "AWS (Learning)"].map((item) => (
+              {["Git","GitHub", "Cloudinary","Docker","AWS (Learning)"].map((item) => (
                 <span
                   key={item}
                   className="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-sm"
