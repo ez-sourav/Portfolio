@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
 import About from './Components/About';
 import Skill from './Components/Skill';
+import Project from './Components/Project';
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
       <Hero />
       <About />
       <Skill />
+      <Project />
     </div>
   )
 }
