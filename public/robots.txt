@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://devbysourav.in/sitemap.xml
+Sitemap: https://souravbiswas.in/sitemap.xml
