@@ -25,7 +25,7 @@ const Hero = () => {
                             View Projects
                         </a>
                         <a
-                            href="/ResumeSouravBiswas.pdf"
+                            href="/Sourav_Biswas_FullStack_Developer_Resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition duration-300">

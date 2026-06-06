@@ -64,7 +64,7 @@ const Navbar = () => {
             </ul>
 
             <a
-              href="/ResumeSouravBiswas.pdf"
+              href="/Sourav_Biswas_FullStack_Developer_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 active:scale-95 px-6 py-2.5 rounded-md font-semibold transition duration-300"
