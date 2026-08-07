@@ -81,7 +81,7 @@ const Project = () => {
                     className="text-center md:text-left mb-10 sm:mb-14 md:mb-16"
                 >
                     <div className="w-16 sm:w-20 md:w-24 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0" />
-                    <h2 className="text-3xl sm:text-4xl font-medium text-white">
+                    <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight">
                         Featured Projects
                     </h2>
                 </motion.div>

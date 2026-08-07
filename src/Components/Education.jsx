@@ -33,7 +33,7 @@ const Education = () => {
         >
           <div className="w-16 sm:w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
 
-          <h2 className="text-3xl sm:text-4xl font-medium">
+          <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight">
             Education & Certifications
           </h2>
         </motion.div>
