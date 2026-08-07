@@ -1,61 +1,80 @@
 import React from "react";
 import "remixicon/fonts/remixicon.css";
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 
 const Contact = () => {
+  const links = [
+    {
+      href: "https://github.com/ez-sourav",
+      icon: "ri-github-fill",
+      label: "GitHub",
+    },
+    {
+      href: "https://www.linkedin.com/in/sourav-biswas-829521255/",
+      icon: "ri-linkedin-box-fill",
+      label: "LinkedIn",
+    },
+    {
+      href: "https://mail.google.com/mail/?view=cm&fs=1&to=souravb2003@gmail.com",
+      icon: "ri-mail-line",
+      label: "Email Me",
+    },
+  ];
+
   return (
     <section
       id="contact"
-      className="py-10 px-4 sm:px-6 lg:px-8"
+      className="py-12 px-4 xs:px-5 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
 
-        <div className="reveal text-center">
-          <div className="w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto"></div>
+        <motion.div
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewport}
+          className="text-center"
+        >
+          <motion.div
+            variants={fadeUp}
+            className="w-16 sm:w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto"
+          />
 
-          <h2 className="text-3xl sm:text-4xl font-medium">
+          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-medium">
             Get In Touch
-          </h2>
+          </motion.h2>
 
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+          <motion.p
+            variants={fadeUp}
+            className="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed text-sm xs:text-base"
+          >
             I'm always open to discussing new projects,
             internship opportunities, collaborations,
             and innovative ideas.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mt-8">
-
-            <a
-              href="https://github.com/ez-sourav"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 px-6 py-3 rounded-lg font-medium transition duration-300"
-            >
-              <i className="ri-github-fill text-lg"></i>
-              GitHub
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/sourav-biswas-829521255/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 px-6 py-3 rounded-lg font-medium transition duration-300"
-            >
-              <i className="ri-linkedin-box-fill text-lg"></i>
-              LinkedIn
-            </a>
-
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=souravb2003@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 px-6 py-3 rounded-lg font-medium transition duration-300"
-            >
-              <i className="ri-mail-line text-lg"></i>
-              Email Me
-            </a>
-
-          </div>
-        </div>
+          <motion.div
+            variants={staggerContainer(0.1)}
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mt-8"
+          >
+            {links.map(({ href, icon, label }) => (
+              <motion.a
+                key={label}
+                variants={fadeUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"
+              >
+                <i className={`${icon} text-lg`}></i>
+                {label}
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
 
       </div>
     </section>

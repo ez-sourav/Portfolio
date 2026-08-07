@@ -2,39 +2,69 @@
 
 @import "tailwindcss";
 
-*{
-   font-family: "Nunito Sans", sans-serif;
-   letter-spacing: 0.8px;
+/* Custom breakpoint for very small phones (iPhone SE, older Androids) */
+@theme {
+  --breakpoint-xs: 400px;
 }
+
+* {
+  font-family: "Nunito Sans", sans-serif;
+  letter-spacing: 0.8px;
+}
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   overflow-x: hidden;
+  /* Prevents iOS Safari from bouncing horizontally on wide sections */
+  width: 100%;
 }
+
 section {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 80px;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+/* Custom scrollbar - subtle, matches the orange accent */
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+::-webkit-scrollbar-track {
+  background: #0b0b0c;
 }
 
-.delay-100 {
-  transition-delay: 100ms;
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 999px;
 }
 
-.delay-200 {
-  transition-delay: 200ms;
+/* Visible keyboard focus for accessibility, since default outlines are
+   often stripped by Tailwind resets */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-.delay-300 {
-  transition-delay: 300ms;
+/* Respect users who've asked for reduced motion at the OS level */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Extra-small phones (≤360px) - tighten letter spacing slightly so
+   headings don't wrap awkwardly */
+@media (max-width: 360px) {
+  * {
+    letter-spacing: 0.4px;
+  }
 }
