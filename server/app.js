@@ -5,9 +5,15 @@ import chatRoutes from "./routes/chatRoutes.js";
 
 const app = express();
 
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    "https://sourav04.vercel.app",
+    "https://www.souravbiswas.in",
+].filter(Boolean);
+
 app.use(
     cors({
-         origin: process.env.FRONTEND_URL,
+        origin: allowedOrigins,
         methods: ["GET", "POST", "OPTIONS"],
         allowedHeaders: ["Content-Type"],
     })
