@@ -8,6 +8,7 @@ import Education from './Components/Education';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import GlobalGlow from './Components/GlobalGlow';
+import AIChat from './Components/ai-chat/AIChat';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Contact />
         <Footer />
       </main>
+      <AIChat/>
     </div>
   )
 }

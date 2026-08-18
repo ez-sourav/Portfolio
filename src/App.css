@@ -40,6 +40,18 @@ section {
   border-radius: 999px;
 }
 
+/* Hide scrollbar inside AI chat textarea */
+.chat-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 /* Visible keyboard focus for accessibility, since default outlines are
    often stripped by Tailwind resets */
 a:focus-visible,
