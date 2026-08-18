@@ -6,10 +6,10 @@ import chatRoutes from "./routes/chatRoutes.js";
 const app = express();
 
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    "http://localhost:5173",
     "https://sourav04.vercel.app",
     "https://www.souravbiswas.in",
-].filter(Boolean);
+];
 
 app.use(
     cors({
