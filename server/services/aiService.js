@@ -606,9 +606,89 @@ const normalizeHistory = (history = []) => {
         }));
 };
 
-export const generatePortfolioResponse = async (
+// export const generatePortfolioResponse = async (
+//     message,
+//     history = []
+// ) => {
+//     if (!message || typeof message !== "string") {
+//         throw new Error("A valid message is required.");
+//     }
+
+//     const trimmedMessage = message.trim();
+
+//     if (!trimmedMessage) {
+//         throw new Error("Message cannot be empty.");
+//     }
+
+//     if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+//         throw new Error("Message is too long.");
+//     }
+
+//     const contents = [
+//         ...normalizeHistory(history),
+//         {
+//             role: "user",
+//             parts: [
+//                 {
+//                     text: trimmedMessage,
+//                 },
+//             ],
+//         },
+//     ];
+
+//     try {
+//         const response = await ai.models.generateContent({
+//             model: MODEL,
+//             contents,
+
+//             config: {
+//                 systemInstruction: SYSTEM_INSTRUCTION,
+//                 maxOutputTokens: MAX_OUTPUT_TOKENS,
+//                 candidateCount: 1,
+//                 thinkingConfig: {
+//                     thinkingLevel: "low",
+//                 },
+//             },
+//         });
+
+//         const candidate = response.candidates?.[0];
+
+//         const finishReason = candidate?.finishReason;
+//         const finishMessage = candidate?.finishMessage;
+
+//         console.log("Gemini finish reason:", finishReason);
+
+//         if (finishMessage) {
+//             console.log("Gemini finish message:", finishMessage);
+//         }
+
+//         const answer = response.text?.trim();
+
+//         if (!answer) {
+//             throw new Error(
+//                 `Gemini returned an empty response. Finish reason: ${finishReason}`
+//             );
+//         }
+//         if (finishReason === "MAX_TOKENS") {
+//             console.warn(
+//                 "Gemini response reached MAX_OUTPUT_TOKENS."
+//             );
+//         }
+
+//         return answer;
+//     } catch (error) {
+//         console.error("Gemini API Error:", error);
+
+//         throw new Error(
+//             "Unable to generate a response from the AI service."
+//         );
+//     }
+// };
+
+export const streamPortfolioResponse = async (
     message,
-    history = []
+    history = [],
+    onChunk
 ) => {
     if (!message || typeof message !== "string") {
         throw new Error("A valid message is required.");
@@ -624,6 +704,10 @@ export const generatePortfolioResponse = async (
         throw new Error("Message is too long.");
     }
 
+    if (typeof onChunk !== "function") {
+        throw new Error("onChunk callback is required.");
+    }
+
     const contents = [
         ...normalizeHistory(history),
         {
@@ -637,50 +721,48 @@ export const generatePortfolioResponse = async (
     ];
 
     try {
-        const response = await ai.models.generateContent({
-            model: MODEL,
-            contents,
+        const responseStream =
+            await ai.models.generateContentStream({
+                model: MODEL,
+                contents,
 
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTION,
-                maxOutputTokens: MAX_OUTPUT_TOKENS,
-                candidateCount: 1,
-                thinkingConfig: {
-                    thinkingLevel: "low",
+                config: {
+                    systemInstruction: SYSTEM_INSTRUCTION,
+                    maxOutputTokens: MAX_OUTPUT_TOKENS,
+                    candidateCount: 1,
+                    thinkingConfig: {
+                        thinkingLevel: "low",
+                    },
                 },
-            },
-        });
+            });
 
-        const candidate = response.candidates?.[0];
+        let fullResponse = "";
 
-        const finishReason = candidate?.finishReason;
-        const finishMessage = candidate?.finishMessage;
+        for await (const chunk of responseStream) {
+            const text = chunk.text;
 
-        console.log("Gemini finish reason:", finishReason);
+            if (!text) {
+                continue;
+            }
 
-        if (finishMessage) {
-            console.log("Gemini finish message:", finishMessage);
+            fullResponse += text;
+
+            onChunk(text);
         }
 
-        const answer = response.text?.trim();
-
-        if (!answer) {
+        if (!fullResponse.trim()) {
             throw new Error(
-                `Gemini returned an empty response. Finish reason: ${finishReason}`
-            );
-        }
-        if (finishReason === "MAX_TOKENS") {
-            console.warn(
-                "Gemini response reached MAX_OUTPUT_TOKENS."
+                "Gemini returned an empty response."
             );
         }
 
-        return answer;
+        return fullResponse;
     } catch (error) {
-        console.error("Gemini API Error:", error);
-
-        throw new Error(
-            "Unable to generate a response from the AI service."
+        console.error(
+            "Gemini Streaming API Error:",
+            error
         );
+
+        throw error;
     }
 };

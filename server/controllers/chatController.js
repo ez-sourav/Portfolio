@@ -1,4 +1,4 @@
-import { generatePortfolioResponse } from "../services/aiService.js";
+import { streamPortfolioResponse } from "../services/aiService.js";
 
 export const chatController = async (req, res) => {
     try {
@@ -22,10 +22,11 @@ export const chatController = async (req, res) => {
         }
 
         // Prevent unnecessarily large requests
-        if (trimmedMessage.length > 1000) {
+        if (trimmedMessage.length > 300) {
             return res.status(400).json({
                 success: false,
-                message: "Message is too long. Please keep it under 1000 characters.",
+                message:
+                    "Message is too long. Please keep it under 300 characters.",
             });
         }
 
@@ -37,23 +38,50 @@ export const chatController = async (req, res) => {
             });
         }
 
-        // Generate AI response
-        const reply = await generatePortfolioResponse(
+        res.setHeader("Content-Type", "text/event-stream");
+        res.setHeader("Cache-Control", "no-cache, no-transform");
+        res.setHeader("Connection", "keep-alive");
+
+        res.flushHeaders?.();
+
+       
+        await streamPortfolioResponse(
             trimmedMessage,
-            history
+            history,
+            (chunk) => {
+                res.write(
+                    `data: ${JSON.stringify({
+                        text: chunk,
+                    })}\n\n`
+                );
+            }
         );
 
-        return res.status(200).json({
-            success: true,
-            reply,
-        });
+        // Tell frontend that generation is complete
+        res.write("data: [DONE]\n\n");
+
+        res.end();
     } catch (error) {
         console.error("Chat Controller Error:", error);
 
-        return res.status(500).json({
-            success: false,
-            message:
-                "Sorry, I'm unable to respond right now. Please try again later.",
-        });
+       
+        if (!res.headersSent) {
+            return res.status(500).json({
+                success: false,
+                message:
+                    "Sorry, I'm unable to respond right now. Please try again later.",
+            });
+        }
+
+        res.write(
+            `data: ${JSON.stringify({
+                error:
+                    "The AI response was interrupted. Please try again.",
+            })}\n\n`
+        );
+
+        res.write("data: [DONE]\n\n");
+
+        res.end();
     }
 };
