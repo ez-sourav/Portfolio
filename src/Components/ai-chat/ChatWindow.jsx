@@ -33,6 +33,7 @@ const ChatWindow = ({ onClose }) => {
     const [messages, setMessages] = useState([INITIAL_MESSAGE]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isStreaming, setIsStreaming] = useState(false);
 
     const messagesEndRef = useRef(null);
 
@@ -49,43 +50,98 @@ const ChatWindow = ({ onClose }) => {
             }));
 
     const handleSendMessage = async (messageText = input) => {
-        const text = messageText.trim();
-        if (!text || isLoading) return;
+    const text = messageText.trim();
 
-        const userMessage = { id: crypto.randomUUID(), role: "user", content: text };
+    if (!text || isLoading) return;
 
-        setMessages((previous) => [...previous, userMessage]);
-        setInput("");
-        setIsLoading(true);
-
-        try {
-            const history = getHistory();
-            const data = await sendChatMessage(text, history);
-
-            if (!data?.success || !data?.reply) {
-                throw new Error("Invalid response from chat API.");
-            }
-
-            setMessages((previous) => [
-                ...previous,
-                { id: crypto.randomUUID(), role: "assistant", content: data.reply },
-            ]);
-        } catch (error) {
-            console.error("Chatbot request error:", error);
-
-            setMessages((previous) => [
-                ...previous,
-                {
-                    id: crypto.randomUUID(),
-                    role: "assistant",
-                    isError: true,
-                    content: "Sorry, I couldn't respond right now. Please try again.",
-                },
-            ]);
-        } finally {
-            setIsLoading(false);
-        }
+    const userMessage = {
+        id: crypto.randomUUID(),
+        role: "user",
+        content: text,
     };
+
+    const assistantMessageId = crypto.randomUUID();
+
+    setMessages((previous) => [
+        ...previous,
+        userMessage,
+    ]);
+
+    setInput("");
+    setIsLoading(true);
+    setIsStreaming(false);
+
+    try {
+        const history = [
+            ...getHistory(),
+            {
+                role: "user",
+                content: text,
+            },
+        ];
+
+        await sendChatMessage(
+            text,
+            history,
+            (chunk) => {
+                // First chunk has arrived
+                setIsStreaming(true);
+
+                setMessages((previous) => {
+                    const assistantExists = previous.some(
+                        (message) =>
+                            message.id === assistantMessageId
+                    );
+
+                    // First chunk:
+                    // create the assistant message
+                    if (!assistantExists) {
+                        return [
+                            ...previous,
+                            {
+                                id: assistantMessageId,
+                                role: "assistant",
+                                content: chunk,
+                            },
+                        ];
+                    }
+
+                    // Following chunks:
+                    // append to existing message
+                    return previous.map((message) =>
+                        message.id === assistantMessageId
+                            ? {
+                                  ...message,
+                                  content:
+                                      message.content + chunk,
+                              }
+                            : message
+                    );
+                });
+            }
+        );
+    } catch (error) {
+        console.error(
+            "Chatbot request error:",
+            error
+        );
+
+        setMessages((previous) => [
+            ...previous,
+            {
+                id: crypto.randomUUID(),
+                role: "assistant",
+                isError: true,
+                content:
+                    error.message ||
+                    "Sorry, I couldn't respond right now. Please try again.",
+            },
+        ]);
+    } finally {
+        setIsLoading(false);
+        setIsStreaming(false);
+    }
+};
 
     const handleSuggestedQuestion = (question) => handleSendMessage(question);
 
@@ -162,7 +218,7 @@ const ChatWindow = ({ onClose }) => {
                         />
                     )}
 
-                    {isLoading && <TypingIndicator />}
+                    {isLoading && !isStreaming && <TypingIndicator />}
 
                     <div ref={messagesEndRef} />
                 </div>
