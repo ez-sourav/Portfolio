@@ -36,9 +36,6 @@ A modern, responsive developer portfolio built with React and Tailwind CSS to sh
 ## 📂 Project Structure
 
 ```bash
-## 📂 Project Structure
-
-```bash
 Portfolio/
 ├── api/
 │
@@ -49,7 +46,6 @@ Portfolio/
 │   ├── data/
 │   ├── routes/
 │   ├── services/
-│   ├── .env
 │   ├── .gitignore
 │   ├── app.js
 │   ├── package.json
@@ -72,8 +68,6 @@ Portfolio/
 ├── package.json
 ├── package-lock.json
 └── README.md
-```
-
 ```
 
 ## 🚀 Getting Started
