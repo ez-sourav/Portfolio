@@ -36,18 +36,44 @@ A modern, responsive developer portfolio built with React and Tailwind CSS to sh
 ## 📂 Project Structure
 
 ```bash
-src/
-├── Components/
-│   ├── Navbar.jsx
-│   ├── Hero.jsx
-│   ├── About.jsx
-│   ├── Skill.jsx
-│   ├── Projects.jsx
-│   ├── Education.jsx
-│   └── Contact.jsx
-├── App.jsx
-├── main.jsx
-└── index.css
+## 📂 Project Structure
+
+```bash
+Portfolio/
+├── api/
+│
+├── public/
+│
+├── server/
+│   ├── controllers/
+│   ├── data/
+│   ├── routes/
+│   ├── services/
+│   ├── .env
+│   ├── .gitignore
+│   ├── app.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+│
+├── src/
+│   ├── assets/
+│   ├── Components/
+│   ├── lib/
+│   ├── services/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
 ```
 
 ## 🚀 Getting Started
