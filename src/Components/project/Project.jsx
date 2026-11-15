@@ -11,7 +11,7 @@ const Project = () => {
             title: "Trendify",
             description:
                 "A production-ready MERN e-commerce platform featuring secure JWT authentication, product variants, shopping cart, wishlist, current location-based address selection, Stripe payment integration, Cloudinary image uploads, and a fully responsive user interface.",
-            image: "/trendify.png",
+            image: "/trendify.webp",
             tech: [
                 "React",
                 "Node.js",
@@ -29,7 +29,7 @@ const Project = () => {
             title: "InterviewIQ",
             description:
                 "An AI-powered interview preparation platform that generates personalized interview roadmaps, learning plans, and technical interview questions using Google's Gemini API.",
-            image: "/interviewIQ.png",
+            image: "/interviewIQ.webp",
             tech: [
                 "React",
                 "Node.js",
@@ -46,7 +46,7 @@ const Project = () => {
             title: "File Manager",
             description:
                 "A secure cloud-based file storage platform featuring authentication, Cloudinary integration, file uploads, previews, downloads, and responsive file management.",
-            image: "/fileManger.png",
+            image: "/fileManger.webp",
             tech: [
                 "React",
                 "Node.js",

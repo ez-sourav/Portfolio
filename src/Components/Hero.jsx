@@ -69,7 +69,7 @@ const Hero = () => {
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     >
                         <img
-                            src="/image.jpeg"
+                            src="/image.webp"
                             alt="Sourav Biswas"
                             className="w-[260px] h-[320px] sm:w-[300px] sm:h-[370px] md:w-[340px] md:h-[410px] lg:w-[340px] lg:h-[420px] object-cover rounded-2xl border border-orange-500/20 shadow-xl shadow-black/40"
                         />

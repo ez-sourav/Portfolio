@@ -70,7 +70,7 @@ const About = () => {
           >
 
             <img
-              src="/coding-image.jpg"
+              src="/coding-image.webp"
               alt="Coding"
               className="w-full rounded-2xl border border-orange-500/20 object-cover shadow-lg"
             />
