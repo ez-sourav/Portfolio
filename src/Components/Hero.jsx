@@ -1,11 +1,21 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Download } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, staggerContainer } from "../lib/motion";
 
 const Hero = () => {
+    const roles = ["Full Stack Developer", "MERN Stack Developer", "Creative Web Developer"];
+    const [roleIndex, setRoleIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section
             id="hero"
@@ -22,18 +32,41 @@ const Hero = () => {
                     variants={fadeUp}
                     className="order-2 md:order-1 text-center md:text-left"
                 >
+                    {/* Availability status badge */}
+                    <motion.div
+                        variants={fadeUp}
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-medium mb-4 whitespace-nowrap"
+                    >
+                        <span className="relative flex h-2 w-2 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        Open to Roles & Internships
+                    </motion.div>
+
                     <motion.div
                         variants={fadeUp}
                         className="w-16 sm:w-25 h-1 bg-gradient-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"
                     />
 
-                    <h1 className="text-3xl xs:text-[2.1rem] sm:text-4xl md:text-5xl font-bold leading-tight mb-3">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 text-[var(--text-primary)]">
                         Hi, I'm <span className="text-orange-500">Sourav Biswas</span>
                     </h1>
 
-                    <p className="text-lg xs:text-xl sm:text-2xl text-gray-300 mb-8">
-                        Full Stack Developer
-                    </p>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-8 min-h-[2.2rem] flex items-center justify-center md:justify-start">
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={roles[roleIndex]}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                transition={{ duration: 0.25 }}
+                                className="text-orange-500 dark:text-orange-400 inline-block"
+                            >
+                                {roles[roleIndex]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </div>
 
                     <motion.div
                         variants={fadeUp}
@@ -43,7 +76,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
                             href="#projects"
-                            className="bg-orange-500 hover:bg-orange-600 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition-colors text-white"
+                            className="bg-orange-500 hover:bg-orange-600 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition-colors text-white shadow-md shadow-orange-500/20"
                         >
                             View Projects
                         </motion.a>
@@ -73,23 +106,23 @@ const Hero = () => {
                         <img
                             src="/image.webp"
                             alt="Sourav Biswas"
-                            className="w-[260px] h-[320px] sm:w-[300px] sm:h-[370px] md:w-[340px] md:h-[410px] lg:w-[340px] lg:h-[420px] object-cover rounded-2xl border border-orange-500/20 shadow-xl shadow-black/40"
+                            className="w-[260px] h-[320px] sm:w-[300px] sm:h-[370px] md:w-[340px] md:h-[410px] lg:w-[340px] lg:h-[420px] object-cover rounded-2xl border border-orange-500/20 shadow-xl shadow-black/10 dark:shadow-black/40"
                         />
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
-                            className="absolute -bottom-4 -left-4 xs:-bottom-5 xs:-left-5 sm:-bottom-6 sm:-left-6 bg-[#1A1A1A] border border-orange-500/20 px-3.5 xs:px-4 sm:px-6 py-2.5 xs:py-3 sm:py-4 rounded-xl shadow-lg max-w-[85%]"
+                            className="absolute -bottom-4 -left-4 xs:-bottom-5 xs:-left-5 sm:-bottom-6 sm:-left-6 bg-[var(--bg-card)] border border-orange-500/20 px-3.5 xs:px-4 sm:px-6 py-2.5 xs:py-3 sm:py-4 rounded-xl shadow-lg shadow-black/5 dark:shadow-black/40 max-w-[85%]"
                         >
                             <div className="flex items-center gap-2 mb-1">
                                 <span className="w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_10px_#f97316] animate-pulse" />
-                                <p className="text-[10px] xs:text-xs sm:text-sm text-gray-400 uppercase tracking-wider">
-                                    Current Role
+                                <p className="text-[10px] xs:text-xs sm:text-sm text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    CURRENT FOCUS
                                 </p>
                             </div>
 
-                            <h3 className="text-sm sm:text-lg font-semibold leading-tight text-white">
-                                BCA Student & Developer
+                            <h3 className="text-sm sm:text-lg font-semibold leading-tight text-[var(--text-primary)]">
+                                Full-Stack & MERN Apps
                             </h3>
                         </motion.div>
                     </motion.div>

@@ -12,7 +12,7 @@ const ChatButton = ({ isOpen, onClick }) => {
             aria-expanded={isOpen}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-slate-700 bg-[#171F33] shadow-[0_10px_30px_rgba(249,115,22,0.18)] transition-colors duration-300 hover:border-orange-500 hover:cursor-pointer focus:outline-none"
+            className="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[var(--chat-border)] bg-[var(--chat-button-bg)] shadow-[0_10px_30px_rgba(249,115,22,0.22)] transition-colors duration-300 hover:border-orange-500 hover:cursor-pointer focus:outline-none"
         >
             {/* Glow effect */}
             <span className="absolute inset-0 rounded-full bg-orange-500/20 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -44,7 +44,7 @@ const ChatButton = ({ isOpen, onClick }) => {
             </AnimatePresence>
 
             {!isOpen && (
-                <span className="absolute right-0.5 top-0.5 z-20 h-3 w-3 rounded-full border-2 border-[#171F33] bg-orange-500" />
+                <span className="absolute right-0.5 top-0.5 z-20 h-3 w-3 rounded-full border-2 border-[var(--chat-button-bg)] bg-orange-500" />
             )}
         </motion.button>
     );

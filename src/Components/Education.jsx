@@ -33,9 +33,9 @@ const Education = () => {
           viewport={viewport}
           className="text-center md:text-left mb-10"
         >
-          <div className="w-16 sm:w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
+          <div className="w-16 sm:w-25 h-1 bg-gradient-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
 
-          <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight">
+          <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight text-[var(--text-primary)]">
             Education & Certifications
           </h2>
         </motion.div>
@@ -51,31 +51,31 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[#1A1A1A] p-6 sm:p-8 rounded-2xl border border-orange-500/10 hover:border-orange-500 transition-colors duration-300"
+            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
           >
-            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4">
+            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4 text-[var(--text-primary)]">
               <GraduationCap size={24} className="text-orange-500 shrink-0" />
               Education
             </h3>
 
-            <h4 className="text-lg font-medium">
+            <h4 className="text-lg font-medium text-[var(--text-primary)]">
               Siliguri Institute of Technology
             </h4>
 
-            <p className="text-orange-400 mt-2">
+            <p className="text-orange-500 dark:text-orange-400 mt-2 font-medium">
               Bachelor of Computer Applications (BCA)
             </p>
 
-            <p className="text-gray-500 mt-2">
+            <p className="text-[var(--text-muted)] mt-2 text-sm font-medium">
               2023 – 2027 (Expected)
             </p>
 
-            <p className="text-gray-400 mt-4 leading-relaxed text-sm xs:text-base">
+            <p className="text-[var(--text-secondary)] mt-4 leading-relaxed text-sm xs:text-base">
               Currently pursuing a Bachelor of Computer Applications (BCA) while building real-world MERN stack projects and strengthening my skills in DBMS, DSA, Computer Networks, and Software Engineering.
             </p>
 
             <div className="mt-5">
-              <span className="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-xs xs:text-sm">
+              <span className="bg-orange-500/10 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full text-xs xs:text-sm font-medium border border-orange-500/20">
                 CGPA (Till 6th Semester): 8 / 10
               </span>
             </div>
@@ -84,9 +84,9 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[#1A1A1A] p-6 sm:p-8 rounded-2xl border border-orange-500/10 hover:border-orange-500 transition-colors duration-300"
+            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
           >
-            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-6">
+            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-6 text-[var(--text-primary)]">
               <Award size={24} className="text-orange-500 shrink-0" />
               Relevant Coursework
             </h3>
@@ -96,7 +96,7 @@ const Education = () => {
                 <div key={cert} className="flex items-start gap-3">
                   <CheckCircle2 size={18} className="text-orange-500 mt-1 shrink-0" />
 
-                  <p className="text-gray-400 text-sm xs:text-base">
+                  <p className="text-[var(--text-secondary)] text-sm xs:text-base">
                     {cert}
                   </p>
                 </div>
@@ -107,18 +107,18 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[#1A1A1A] p-6 sm:p-8 rounded-2xl border border-orange-500/10 hover:border-orange-500 transition-colors duration-300"
+            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
           >
-            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4">
+            <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4 text-[var(--text-primary)]">
               <Trophy size={24} className="text-orange-500 shrink-0" />
               Activities
             </h3>
 
-            <p className="text-orange-400 mb-4">
+            <p className="text-orange-500 dark:text-orange-400 mb-4 font-medium">
               Software Development Competitions
             </p>
 
-            <p className="text-gray-400 leading-relaxed text-sm xs:text-base">
+            <p className="text-[var(--text-secondary)] leading-relaxed text-sm xs:text-base">
               Participated in software development competitions and
               technical events, collaborating with teams to solve
               real-world problems, develop innovative solutions,

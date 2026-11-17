@@ -20,7 +20,7 @@ const ProjectModal = ({ project, onClose }) => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={onClose}
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
+                className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm cursor-pointer"
             />
 
             <motion.div
@@ -28,17 +28,18 @@ const ProjectModal = ({ project, onClose }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative w-full max-w-2xl bg-[#1A1A1A] rounded-2xl overflow-hidden border border-orange-500/20 shadow-2xl flex flex-col max-h-[90vh] z-10"
+                className="relative w-full max-w-2xl bg-[var(--bg-card)] rounded-2xl overflow-hidden border border-orange-500/20 shadow-2xl flex flex-col max-h-[90vh] z-10"
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-20 p-2 bg-black/60 hover:bg-orange-500 text-white rounded-full transition-colors duration-200 backdrop-blur-md"
+                    aria-label="Close modal"
+                    className="absolute top-4 right-4 z-20 p-2 bg-black/60 hover:bg-orange-500 text-white rounded-full transition-colors duration-200 backdrop-blur-md cursor-pointer"
                 >
                     <X size={20} />
                 </button>
 
                 <div className="overflow-y-auto overflow-x-hidden custom-scrollbar">
-                    <div className="relative aspect-video bg-linear-to-br from-orange-500/5 to-transparent">
+                    <div className="relative aspect-video bg-gradient-to-br from-orange-500/5 to-transparent">
                         <img
                             src={project.image}
                             alt={project.title}
@@ -51,15 +52,15 @@ const ProjectModal = ({ project, onClose }) => {
                     </div>
 
                     <div className="p-6 sm:p-8">
-                        <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
+                        <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--text-primary)]">
                             {project.title}
                         </h3>
                         
-                        <p className="text-gray-300 leading-relaxed mb-8 text-sm sm:text-base">
+                        <p className="text-[var(--text-secondary)] leading-relaxed mb-8 text-sm sm:text-base">
                             {project.description}
                         </p>
 
-                        <h4 className="text-white font-semibold mb-3 text-sm sm:text-base uppercase tracking-wider">
+                        <h4 className="text-[var(--text-primary)] font-semibold mb-3 text-sm sm:text-base uppercase tracking-wider">
                             Technologies Used
                         </h4>
                         
@@ -67,7 +68,7 @@ const ProjectModal = ({ project, onClose }) => {
                             {project.tech.map((tech) => (
                                 <span
                                     key={tech}
-                                    className="bg-orange-500/10 text-orange-400 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium"
+                                    className="bg-orange-500/10 text-orange-600 dark:text-orange-400 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-orange-500/15"
                                 >
                                     {tech}
                                 </span>
@@ -79,7 +80,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 href={project.live}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 active:scale-95 px-4 py-3 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base text-white transition-all duration-200"
+                                className="flex-1 flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 active:scale-95 px-4 py-3 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base text-white transition-all duration-200 shadow-md shadow-orange-500/20"
                             >
                                 <ExternalLink size={20} className="shrink-0" />
                                 <span>Live Demo</span>

@@ -47,7 +47,7 @@ export default function Home() {
         <link rel="canonical" href="https://souravbiswas.in" />
       </Head>
 
-      <div className="min-h-screen bg-[#0B0B0C] text-white overflow-x-hidden relative">
+      <div className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)] overflow-x-hidden relative transition-colors duration-300">
         <GlobalGlow />
 
         <main className="relative z-10">
