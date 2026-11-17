@@ -124,10 +124,9 @@ npm start
 ## 👨‍💻 Author & Ownership
 
 **Sourav Biswas**
-- **Website:** [souravbiswas.in](https://souravbiswas.in)
-- **GitHub:** [@ez-sourav](https://github.com/ez-sourav)
-- **LinkedIn:** [Sourav Biswas](https://www.linkedin.com/in/sourav-biswas-829521255/)
+
 
 ---
+## ⭐ Show Your Support
 
-© 2026 Sourav Biswas. All rights reserved.
+If you find this portfolio helpful or inspiring, consider giving it a ⭐ on GitHub!
