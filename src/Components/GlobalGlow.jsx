@@ -18,7 +18,7 @@ const GlobalGlow = () => {
         <div 
             className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
             style={{
-                background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(249, 115, 22, 0.10), transparent 80%)`
+                background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, rgba(249, 115, 22, var(--glow-opacity, 0.08)), transparent 80%)`
             }}
         />
     );

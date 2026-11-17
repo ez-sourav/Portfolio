@@ -27,7 +27,7 @@ const SuggestedQuestions = ({ onSelect, disabled = false }) => {
                     disabled={disabled}
                     whileHover={{ scale: disabled ? 1 : 1.03 }}
                     whileTap={{ scale: disabled ? 1 : 0.97 }}
-                    className="rounded-full border border-slate-600 bg-transparent px-3 py-1.5 text-xs text-slate-400 transition-colors duration-200 hover:border-orange-500 hover:bg-orange-500/5 hover:cursor-pointer hover:text-orange-500 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-full border border-[var(--chat-border)] bg-[var(--chat-assistant-bubble)] px-3 py-1.5 text-xs text-[var(--chat-assistant-text)] transition-all duration-200 hover:border-orange-500/50 hover:bg-orange-500/10 hover:cursor-pointer hover:text-orange-500 disabled:cursor-not-allowed disabled:opacity-50 shadow-sm"
                 >
                     {question}
                 </motion.button>

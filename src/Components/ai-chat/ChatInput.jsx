@@ -32,7 +32,7 @@ const ChatInput = ({ value, onChange, onSend, disabled = false }) => {
     };
 
     return (
-        <div className="border-t border-slate-700 bg-[#0F172A] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="border-t border-[var(--chat-border)] bg-[var(--chat-input-bg)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
             <div className="relative flex items-end">
                 <textarea
                     ref={textareaRef}
@@ -43,7 +43,7 @@ const ChatInput = ({ value, onChange, onSend, disabled = false }) => {
                     rows={1}
                     maxLength={300}
                     placeholder="Ask about Sourav..."
-                    className="chat-scroll min-h-11 max-h-30 w-full resize-none rounded-lg border border-slate-700 bg-[#131B2E] py-2.5 pl-3 pr-11 text-sm leading-5 text-slate-100 outline-none placeholder:text-slate-500 transition focus:border-orange-500 focus:ring-1 focus:ring-orange-500 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="chat-scroll min-h-11 max-h-30 w-full resize-none rounded-lg border border-[var(--chat-border)] bg-[var(--chat-input-field)] py-2.5 pl-3 pr-11 text-sm leading-5 text-[var(--chat-input-text)] outline-none placeholder:text-[var(--text-muted)] transition focus:border-orange-500 focus:ring-1 focus:ring-orange-500 disabled:cursor-not-allowed disabled:opacity-60"
                 />
 
                 <motion.button
@@ -59,12 +59,12 @@ const ChatInput = ({ value, onChange, onSend, disabled = false }) => {
             </div>
 
             <div className="mt-2 flex items-center justify-between">
-                <p className="text-center font-mono text-[10px] text-slate-600">
+                <p className="text-center font-mono text-[10px] text-[var(--text-muted)]">
                     <span className="hidden xs:inline">Enter to send · Shift + Enter for new line</span>
                     <span className="xs:hidden">Enter to send</span>
                 </p>
 
-                <span className={`text-[10px] ${value.length >= 270 ? "text-orange-400" : "text-slate-600"}`}>
+                <span className={`text-[10px] font-mono ${value.length >= 270 ? "text-orange-500 font-semibold" : "text-[var(--text-muted)]"}`}>
                     {value.length}/300
                 </span>
             </div>

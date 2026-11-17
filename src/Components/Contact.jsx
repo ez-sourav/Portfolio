@@ -39,16 +39,16 @@ const Contact = () => {
         >
           <motion.div
             variants={fadeUp}
-            className="w-16 sm:w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto"
+            className="w-16 sm:w-25 h-1 bg-gradient-to-r from-orange-500 to-transparent mb-4 mx-auto"
           />
 
-          <motion.h2 variants={fadeUp} className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight">
+          <motion.h2 variants={fadeUp} className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight text-[var(--text-primary)]">
             Get In Touch
           </motion.h2>
 
           <motion.p
             variants={fadeUp}
-            className="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed text-sm xs:text-base"
+            className="text-[var(--text-secondary)] mt-4 max-w-2xl mx-auto leading-relaxed text-sm xs:text-base"
           >
             I'm always open to discussing new projects,
             internship opportunities, collaborations,
@@ -68,7 +68,7 @@ const Contact = () => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"
+                className="flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 shadow-sm"
               >
                 <i className={`${icon} text-lg`}></i>
                 {label}

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, staggerContainer, viewport } from "../../lib/motion";
-import ProjectModal from "./ProjectModal"; 
+import ProjectModal from "./ProjectModal";
 
 const Project = () => {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -83,13 +83,13 @@ const Project = () => {
                     className="text-center md:text-left mb-10 sm:mb-14 md:mb-16"
                 >
                     <div className="w-16 sm:w-20 md:w-24 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0" />
-                    <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight">
+                    <h2 className="text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight text-[var(--text-primary)]">
                         Featured Projects
                     </h2>
                 </motion.div>
 
                 {projects.length === 0 ? (
-                    <div className="text-center text-gray-400 py-10">
+                    <div className="text-center text-[var(--text-muted)] py-10">
                         <p>More projects coming soon.</p>
                     </div>
                 ) : (
@@ -106,10 +106,10 @@ const Project = () => {
                                 variants={fadeUp}
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.3 }}
-                                className="bg-[#1A1A1A] rounded-2xl overflow-hidden border border-orange-500/10 hover:border-orange-500/40 transition-all duration-300 group flex flex-col h-full cursor-pointer"
+                                className="bg-[var(--bg-card)] rounded-2xl overflow-hidden border border-[var(--border-card)] hover:border-orange-500/60 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-[0_12px_35px_rgba(249,115,22,0.18)] transition-all duration-300 group flex flex-col h-full cursor-pointer"
                                 onClick={() => setSelectedProject(project)}
                             >
-                                <div className="relative overflow-hidden aspect-video bg-linear-to-br from-orange-500/5 to-transparent shrink-0">
+                                <div className="relative overflow-hidden aspect-video bg-gradient-to-br from-orange-500/5 to-transparent shrink-0">
                                     <img
                                         src={project.image}
                                         alt={project.title}
@@ -123,11 +123,11 @@ const Project = () => {
                                 </div>
 
                                 <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-1 pointer-events-none">
-                                    <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-white">
+                                    <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-[var(--text-primary)]">
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-gray-400 leading-relaxed mb-4 text-sm sm:text-base line-clamp-2">
+                                    <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-sm sm:text-base line-clamp-2">
                                         {project.description}
                                     </p>
 
@@ -135,13 +135,13 @@ const Project = () => {
                                         {project.tech.slice(0, 3).map((tech) => (
                                             <span
                                                 key={tech}
-                                                className="bg-orange-500/10 text-orange-400 px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap"
+                                                className="bg-orange-500/10 text-orange-600 dark:text-orange-400 px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap"
                                             >
                                                 {tech}
                                             </span>
                                         ))}
                                         {project.tech.length > 3 && (
-                                            <span className="bg-[#2A2A2A] text-gray-400 px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap border border-white/5">
+                                            <span className="bg-[var(--bg-card-alt)] text-[var(--text-muted)] px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap border border-orange-500/10">
                                                 +{project.tech.length - 3}
                                             </span>
                                         )}
@@ -153,7 +153,7 @@ const Project = () => {
                                                 e.stopPropagation();
                                                 setSelectedProject(project);
                                             }}
-                                            className="w-full flex items-center justify-center gap-2 border border-orange-500/30 text-orange-400 hover:bg-orange-500 hover:text-white active:scale-95 px-3 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base hover:cursor-pointer transition-all duration-300 min-h-11"
+                                            className="w-full flex items-center justify-center gap-2 border border-orange-500/30 text-orange-500 dark:text-orange-400 hover:bg-orange-500 hover:text-white active:scale-95 px-3 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base hover:cursor-pointer transition-all duration-300 min-h-11"
                                         >
                                             View Details
                                         </button>

@@ -1,9 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Fira+Code:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tektur:wght@400..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zalando+Sans+SemiExpanded:ital@0;1&display=swap');
 @import "tailwindcss";
 
+/* ─── Tailwind v4 dark/light class variants ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
 /* Custom breakpoint for very small phones (iPhone SE, older Androids) */
 @theme {
   --breakpoint-xs: 400px;
+}
+
+/* ─── Theme CSS Variables ─── */
+/* Default / Light Mode (Warm Ivory & Orange harmony) */
+:root {
+  --bg-base: #FBF9F5;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #F3EFEA;
+  --bg-card-hover: #FFFFFF;
+  --bg-nav: rgba(251, 249, 245, 0.82);
+  --bg-nav-scrolled: rgba(251, 249, 245, 0.94);
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --border-subtle: rgba(249, 115, 22, 0.16);
+  --border-card: rgba(249, 115, 22, 0.18);
+  --border-nav: rgba(249, 115, 22, 0.20);
+  --shadow-card: 0 10px 30px -5px rgba(249, 115, 22, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 16px 36px -4px rgba(249, 115, 22, 0.20);
+  --scrollbar-track: #FBF9F5;
+  --glow-opacity: 0.07;
+
+  /* AI Chat in Light Mode */
+  --chat-bg: #FAF7F2;
+  --chat-header: #FFFFFF;
+  --chat-messages: #F5F2EB;
+  --chat-assistant-bubble: #FFFFFF;
+  --chat-assistant-text: #1F2937;
+  --chat-input-bg: #FFFFFF;
+  --chat-input-field: #FAF7F2;
+  --chat-input-text: #111827;
+  --chat-button-bg: #FFFFFF;
+  --chat-border: rgba(249, 115, 22, 0.20);
+}
+
+/* Dark Mode (True Deep Dark with Orange Glow) */
+.dark {
+  --bg-base: #0B0B0C;
+  --bg-card: #1A1A1A;
+  --bg-card-alt: #141416;
+  --bg-card-hover: #1E1E22;
+  --bg-nav: rgba(11, 11, 12, 0.72);
+  --bg-nav-scrolled: rgba(11, 11, 12, 0.92);
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --border-subtle: rgba(249, 115, 22, 0.12);
+  --border-card: rgba(249, 115, 22, 0.12);
+  --border-nav: rgba(249, 115, 22, 0.15);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 14px 35px rgba(249, 115, 22, 0.16);
+  --scrollbar-track: #0B0B0C;
+  --glow-opacity: 0.10;
+
+  /* AI Chat in Dark Mode */
+  --chat-bg: #121215;
+  --chat-header: #161619;
+  --chat-messages: #0C0C0E;
+  --chat-assistant-bubble: #1A1A1E;
+  --chat-assistant-text: #E5E7EB;
+  --chat-input-bg: #161619;
+  --chat-input-field: #1A1A1E;
+  --chat-input-text: #F3F4F6;
+  --chat-button-bg: #171F33;
+  --chat-border: rgba(249, 115, 22, 0.20);
 }
 
 * {
@@ -19,6 +88,9 @@ body {
   overflow-x: hidden;
   /* Prevents iOS Safari from bouncing horizontally on wide sections */
   width: 100%;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 section {
@@ -31,7 +103,7 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b0b0c;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {

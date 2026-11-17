@@ -193,24 +193,24 @@ const ChatWindow = ({ onClose }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-hidden bg-[#0F172A] sm:static sm:z-auto sm:h-[75vh] sm:max-h-[640px] sm:w-[380px] sm:rounded-2xl sm:border sm:border-slate-700 sm:shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(249,115,22,0.12)] lg:h-[600px] lg:w-[400px]"
+            className="fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-hidden bg-[var(--chat-bg)] sm:static sm:z-auto sm:h-[75vh] sm:max-h-[640px] sm:w-[380px] sm:rounded-2xl sm:border sm:border-[var(--chat-border)] sm:shadow-[0_15px_45px_rgba(0,0,0,0.15),0_0_25px_rgba(249,115,22,0.12)] dark:sm:shadow-[0_15px_45px_rgba(0,0,0,0.8),0_0_25px_rgba(249,115,22,0.12)] lg:h-[600px] lg:w-[400px]"
         >
             {/* HEADER */}
-            <div className="flex h-14 sm:h-16 shrink-0 items-center justify-between border-b border-slate-700 bg-[#0F172A] px-3 sm:px-4 pt-[env(safe-area-inset-top)] sm:pt-0">
+            <div className="flex h-14 sm:h-16 shrink-0 items-center justify-between border-b border-[var(--chat-border)] bg-[var(--chat-header)] px-3 sm:px-4 pt-[env(safe-area-inset-top)] sm:pt-0">
                 <div className="flex items-center gap-2.5 sm:gap-3">
                     <div className="relative">
-                        <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-600 bg-slate-700">
+                        <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-orange-500/30 bg-orange-500/10">
                             <Bot size={16} className="text-orange-500" />
                         </div>
 
-                        <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full border border-[#0F172A] bg-orange-500" />
+                        <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full border border-[var(--chat-header)] bg-orange-500" />
                     </div>
 
                     <div className="min-w-0">
-                        <h2 className="truncate text-sm font-semibold leading-tight text-slate-100">
+                        <h2 className="truncate text-sm font-semibold leading-tight text-[var(--text-primary)]">
                             Sourav's Portfolio Assistant
                         </h2>
-                        <p className="text-[11px] sm:text-xs text-slate-400">
+                        <p className="text-[11px] sm:text-xs text-[var(--text-muted)]">
                             Ask me about Sourav
                         </p>
                     </div>
@@ -222,7 +222,7 @@ const ChatWindow = ({ onClose }) => {
                         onClick={handleClearChat}
                         disabled={isLoading}
                         aria-label="Clear conversation"
-                        className="rounded-md p-2 text-slate-500 transition hover:bg-slate-800 hover:cursor-pointer hover:text-slate-200 disabled:cursor-not-allowed disabled:opacity-30"
+                        className="rounded-md p-2 text-[var(--text-secondary)] transition hover:bg-orange-500/10 hover:cursor-pointer hover:text-orange-500 disabled:cursor-not-allowed disabled:opacity-30"
                     >
                         <RotateCcw size={16} className="sm:hidden" />
                         <RotateCcw size={17} className="hidden sm:block" />
@@ -232,7 +232,7 @@ const ChatWindow = ({ onClose }) => {
                         type="button"
                         onClick={onClose}
                         aria-label="Close chatbot"
-                        className="rounded-md p-2 text-slate-500 transition hover:cursor-pointer hover:bg-slate-800 hover:text-slate-200"
+                        className="rounded-md p-2 text-[var(--text-secondary)] transition hover:cursor-pointer hover:bg-orange-500/10 hover:text-orange-500"
                     >
                         <X size={18} className="sm:hidden" />
                         <X size={19} className="hidden sm:block" />
@@ -241,7 +241,7 @@ const ChatWindow = ({ onClose }) => {
             </div>
 
             {/* MESSAGES */}
-            <div className="chat-scroll flex-1 overflow-y-auto bg-[#060E20] p-3 sm:p-4">
+            <div className="chat-scroll flex-1 overflow-y-auto bg-[var(--chat-messages)] p-3 sm:p-4">
                 <div className="flex flex-col gap-3 sm:gap-4">
                     {messages.map((message) => (
                         <ChatMessage key={message.id} message={message} />
@@ -274,11 +274,11 @@ const ChatWindow = ({ onClose }) => {
 const TypingIndicator = () => {
     return (
         <div className="flex max-w-[85%] gap-2">
-            <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-600 bg-slate-700">
+            <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-orange-500/30 bg-orange-500/10">
                 <Bot size={14} className="text-orange-500" />
             </div>
 
-            <div className="flex h-10.5 items-center gap-1 rounded-2xl rounded-tl-sm border border-slate-700/70 bg-[#131B2E] px-4">
+            <div className="flex h-10.5 items-center gap-1 rounded-2xl rounded-tl-sm border border-[var(--chat-border)] bg-[var(--chat-assistant-bubble)] px-4">
                 {[0, 1, 2].map((i) => (
                     <motion.span
                         key={i}

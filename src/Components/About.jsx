@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { fadeUp, staggerContainer, viewport } from '../lib/motion'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer, viewport } from '../lib/motion';
 
 const About = () => {
   return (
@@ -21,18 +21,18 @@ const About = () => {
         {/* Left Side */}
         <motion.div variants={fadeUp} className='text-center md:text-left'>
 
-          <div className="w-16 sm:w-25 h-1 bg-linear-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
+          <div className="w-16 sm:w-25 h-1 bg-gradient-to-r from-orange-500 to-transparent mb-4 mx-auto md:mx-0"></div>
 
-          <h2 className='text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight mb-6'>
+          <h2 className='text-[26px] xs:text-3xl sm:text-4xl font-medium tracking-tight mb-6 text-[var(--text-primary)]'>
             About Me
           </h2>
 
-          <p className="text-gray-400 leading-relaxed mb-6 text-base sm:text-lg">
+          <p className="text-[var(--text-secondary)] leading-relaxed mb-6 text-base sm:text-lg">
             I am a passionate full stack developer and BCA student
             focused on building responsive and user-friendly web applications.
           </p>
 
-          <p className="text-gray-400 leading-relaxed mb-10 text-base sm:text-lg">
+          <p className="text-[var(--text-secondary)] leading-relaxed mb-10 text-base sm:text-lg">
             I enjoy learning modern technologies and creating clean,
             scalable digital experiences with React, Node.js, and MongoDB.
           </p>
@@ -44,7 +44,7 @@ const About = () => {
                 2+
               </h3>
 
-              <p className='text-gray-500 text-sm sm:text-base'>
+              <p className='text-[var(--text-muted)] text-sm sm:text-base font-medium'>
                 Years Coding
               </p>
             </motion.div>
@@ -54,7 +54,7 @@ const About = () => {
                 10+
               </h3>
 
-              <p className='text-gray-500 text-sm sm:text-base'>
+              <p className='text-[var(--text-muted)] text-sm sm:text-base font-medium'>
                 Projects
               </p>
             </motion.div>
@@ -74,7 +74,7 @@ const About = () => {
             <img
               src="/coding-image.webp"
               alt="Coding"
-              className="w-full rounded-2xl border border-orange-500/20 object-cover shadow-lg"
+              className="w-full rounded-2xl border border-orange-500/20 object-cover shadow-lg shadow-black/5 dark:shadow-black/40"
             />
 
             {/* Glow */}
@@ -86,7 +86,7 @@ const About = () => {
 
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;
