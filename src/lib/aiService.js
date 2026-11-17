@@ -650,9 +650,6 @@ export const streamPortfolioResponse = async (
                     systemInstruction: SYSTEM_INSTRUCTION,
                     maxOutputTokens: MAX_OUTPUT_TOKENS,
                     candidateCount: 1,
-                    thinkingConfig: {
-                        thinkingLevel: "low",
-                    },
                 },
             });
 
