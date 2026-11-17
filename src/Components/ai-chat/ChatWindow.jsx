@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Bot, RotateCcw, X } from "lucide-react";
@@ -32,13 +34,16 @@ const windowVariants = {
 const ChatWindow = ({ onClose }) => {
     const [messages, setMessages] = useState(() => {
         try {
-            const savedMessages = sessionStorage.getItem(
-                "portfolio-chat-messages"
-            );
+            if (typeof window !== "undefined") {
+                const savedMessages = sessionStorage.getItem(
+                    "portfolio-chat-messages"
+                );
 
-            return savedMessages
-                ? JSON.parse(savedMessages)
-                : [INITIAL_MESSAGE];
+                return savedMessages
+                    ? JSON.parse(savedMessages)
+                    : [INITIAL_MESSAGE];
+            }
+            return [INITIAL_MESSAGE];
         } catch (error) {
             console.error(
                 "Failed to load chat history:",
