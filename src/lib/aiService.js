@@ -1,7 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 import portfolioData from "./portfolioData.js";
 
-const MODEL = "gemini-2.5-flash";
+const CANDIDATE_MODELS = [
+    "gemini-flash-lite-latest",
+    "gemini-3.8-flash",
+    "gemini-flash-latest",
+    "gemini-3.5-flash",
+];
 
 const MAX_MESSAGE_LENGTH = 300;
 const MAX_HISTORY_MESSAGES = 8;
@@ -640,39 +645,45 @@ export const streamPortfolioResponse = async (
     ];
 
     const ai = getAiClient();
+    let lastError = null;
 
-    try {
-        const responseStream =
-            await ai.models.generateContentStream({
-                model: MODEL,
-                contents,
-                config: {
-                    systemInstruction: SYSTEM_INSTRUCTION,
-                    maxOutputTokens: MAX_OUTPUT_TOKENS,
-                    candidateCount: 1,
-                },
-            });
+    for (const model of CANDIDATE_MODELS) {
+        try {
+            const responseStream =
+                await ai.models.generateContentStream({
+                    model,
+                    contents,
+                    config: {
+                        systemInstruction: SYSTEM_INSTRUCTION,
+                        maxOutputTokens: MAX_OUTPUT_TOKENS,
+                        candidateCount: 1,
+                    },
+                });
 
-        let fullResponse = "";
+            let fullResponse = "";
 
-        for await (const chunk of responseStream) {
-            const text = chunk.text;
+            for await (const chunk of responseStream) {
+                const text = chunk.text;
 
-            if (!text) {
-                continue;
+                if (!text) {
+                    continue;
+                }
+
+                fullResponse += text;
+                onChunk(text);
             }
 
-            fullResponse += text;
-            onChunk(text);
-        }
+            if (!fullResponse.trim()) {
+                throw new Error("Gemini returned an empty response.");
+            }
 
-        if (!fullResponse.trim()) {
-            throw new Error("Gemini returned an empty response.");
+            return fullResponse;
+        } catch (error) {
+            console.warn(`Model ${model} failed, trying next:`, error.message);
+            lastError = error;
         }
-
-        return fullResponse;
-    } catch (error) {
-        console.error("Gemini Streaming API Error:", error);
-        throw error;
     }
+
+    console.error("All Gemini models failed:", lastError);
+    throw lastError;
 };
