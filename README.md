@@ -121,8 +121,13 @@ npm start
 
 ---
 
-## 📄 License
+## 👨‍💻 Author & Ownership
 
-This project is open-source and available under the [MIT License](LICENSE).
+**Sourav Biswas**
+- **Website:** [souravbiswas.in](https://souravbiswas.in)
+- **GitHub:** [@ez-sourav](https://github.com/ez-sourav)
+- **LinkedIn:** [Sourav Biswas](https://www.linkedin.com/in/sourav-biswas-829521255/)
 
-⭐ If you find this portfolio helpful or inspiring, consider giving it a star on GitHub!
+---
+
+© 2026 Sourav Biswas. All rights reserved.
