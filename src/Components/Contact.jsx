@@ -1,5 +1,6 @@
+"use client";
+
 import React from "react";
-import "remixicon/fonts/remixicon.css";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
 
