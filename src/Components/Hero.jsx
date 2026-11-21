@@ -117,16 +117,22 @@ const Hero = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
-                            className="absolute -bottom-4 -left-4 xs:-bottom-5 xs:-left-5 sm:-bottom-6 sm:-left-6 bg-[var(--bg-card)] border border-orange-500/20 px-3.5 xs:px-4 sm:px-6 py-2.5 xs:py-3 sm:py-4 rounded-xl shadow-lg shadow-black/5 dark:shadow-black/40 max-w-[85%]"
+                            className="absolute -bottom-4 -left-4 xs:-bottom-5 xs:-left-5 sm:-bottom-6 sm:-left-6 bg-white/95 dark:bg-[#0e0e12]/90 backdrop-blur-xl border border-orange-500/30 dark:border-orange-500/35 px-4 xs:px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl shadow-xl shadow-black/15 dark:shadow-black/60 max-w-[90%] sm:max-w-[85%] z-20 overflow-hidden"
                         >
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className="w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_10px_#f97316] animate-pulse" />
-                                <p className="text-[10px] xs:text-xs sm:text-sm text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                            {/* Subtle top specular glass highlight */}
+                            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 dark:via-white/20 to-transparent pointer-events-none" />
+
+                            <div className="flex items-center gap-2 mb-1.5">
+                                <span className="relative flex h-2 w-2 shrink-0">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 shadow-[0_0_8px_#f97316]" />
+                                </span>
+                                <p className="text-[10px] xs:text-xs sm:text-xs font-semibold tracking-wider uppercase text-orange-500 dark:text-orange-400">
                                     CURRENT FOCUS
                                 </p>
                             </div>
 
-                            <h3 className="text-sm sm:text-lg font-semibold leading-tight text-[var(--text-primary)]">
+                            <h3 className="text-sm sm:text-base lg:text-lg font-bold tracking-tight text-neutral-900 dark:text-white whitespace-nowrap">
                                 Full-Stack & MERN Apps
                             </h3>
                         </motion.div>

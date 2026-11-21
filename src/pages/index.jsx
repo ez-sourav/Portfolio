@@ -50,7 +50,7 @@ export default function Home() {
       <div className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)] overflow-x-hidden relative transition-colors duration-300">
         <GlobalGlow />
 
-        <main className="relative z-10">
+        <main className="relative z-10" style={{ position: "relative", zIndex: 10 }}>
           <Navbar />
           <Hero />
           <About />

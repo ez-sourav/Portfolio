@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Code, X } from "lucide-react";
+import { TechBadge } from "../icons/TechIcons";
 
 const ProjectModal = ({ project, onClose }) => {
     useEffect(() => {
@@ -28,7 +29,7 @@ const ProjectModal = ({ project, onClose }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative w-full max-w-2xl bg-[var(--bg-card)] rounded-2xl overflow-hidden border border-orange-500/20 shadow-2xl flex flex-col max-h-[90vh] z-10"
+                className="relative w-full max-w-2xl glass-card rounded-2xl overflow-hidden border border-orange-500/25 hover:!border-orange-500/25 shadow-2xl flex flex-col max-h-[90vh] z-10"
             >
                 <button
                     onClick={onClose}
@@ -64,14 +65,13 @@ const ProjectModal = ({ project, onClose }) => {
                             Technologies Used
                         </h4>
                         
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-8">
                             {project.tech.map((tech) => (
-                                <span
+                                <TechBadge
                                     key={tech}
-                                    className="bg-orange-500/10 text-orange-600 dark:text-orange-400 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-orange-500/15"
-                                >
-                                    {tech}
-                                </span>
+                                    name={tech}
+                                    size="sm"
+                                />
                             ))}
                         </div>
 
@@ -89,7 +89,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 href={project.github}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex-1 flex items-center justify-center gap-2 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 px-4 py-3 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-200"
+                                className="flex-1 flex items-center justify-center gap-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white active:scale-95 px-4 py-3 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-200"
                             >
                                 <Code size={20} className="shrink-0" />
                                 <span>View GitHub</span>

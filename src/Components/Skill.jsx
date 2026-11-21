@@ -4,6 +4,7 @@ import { SquareTerminal, Database, Code } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewport } from "../lib/motion";
+import { TechBadge } from "./icons/TechIcons";
 
 const Skill = () => {
   const groups = [
@@ -17,7 +18,7 @@ const Skill = () => {
       icon: Database,
       title: "Backend",
       desc: "Creating scalable backend systems, APIs, authentication, and database management solutions.",
-      items: ["Node.js", "Express.js", "MongoDB", "REST APIs", "Firebase", "Supabase"],
+      items: ["Node.js", "Express.js", "MongoDB", "REST APIs", "Firebase", "Supabase", "JWT"],
     },
     {
       icon: Code,
@@ -61,28 +62,37 @@ const Skill = () => {
               variants={fadeUp}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
-              className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500/60 hover:shadow-[0_12px_35px_rgba(249,115,22,0.18)] transition-all duration-300"
+              className="relative z-10 overflow-hidden glass-card p-5 sm:p-6 md:p-6 rounded-2xl hover:border-orange-500 hover:shadow-[0_12px_36px_rgba(249,115,22,0.14)] transition-all duration-300 group flex flex-col justify-between"
             >
-              <h3 className="flex items-center gap-3 text-xl sm:text-2xl font-semibold mb-4 text-[var(--text-primary)]">
-                <span className="p-2.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-500">
-                  <Icon size={22} className="shrink-0" />
-                </span>
-                {title}
-              </h3>
+              {/* Subtle top specular glass highlight */}
+              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent pointer-events-none" />
 
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed text-sm sm:text-base">
-                {desc}
-              </p>
-
-              <div className="flex flex-wrap gap-2.5">
-                {items.map((item) => (
-                  <span
-                    key={item}
-                    className="bg-orange-500/10 text-orange-600 dark:text-orange-300 hover:bg-orange-500 hover:text-white border border-orange-500/20 px-3 py-1.5 rounded-full text-xs xs:text-sm font-medium transition-all duration-200 cursor-default"
-                  >
-                    {item}
+              <div>
+                <h3 className="relative flex items-center gap-3 text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-[var(--text-primary)]">
+                  <span className="p-2.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-500 shadow-xs">
+                    <Icon size={22} className="shrink-0" />
                   </span>
-                ))}
+                  {title}
+                </h3>
+
+                <p className="relative text-[var(--text-secondary)] mb-6 leading-relaxed text-sm sm:text-base">
+                  {desc}
+                </p>
+              </div>
+
+              <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 mt-auto pt-2">
+                {items.map((item, idx) => {
+                  const isLastOdd = items.length % 2 !== 0 && idx === items.length - 1;
+                  return (
+                    <TechBadge
+                      key={item}
+                      name={item}
+                      size="md"
+                      title={item}
+                      className={`w-full min-w-0 ${isLastOdd ? "col-span-2" : ""} justify-start`}
+                    />
+                  );
+                })}
               </div>
             </motion.div>
           ))}
