@@ -80,6 +80,9 @@ const Hero = () => {
                                 e.preventDefault();
                                 const el = document.getElementById("projects");
                                 if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                if (typeof window !== "undefined" && window.history?.pushState) {
+                                    window.history.pushState(null, "", "#projects");
+                                }
                             }}
                             className="bg-orange-500 hover:bg-orange-600 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition-colors text-white shadow-md shadow-orange-500/20"
                         >
