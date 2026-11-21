@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, staggerContainer, viewport } from "../../lib/motion";
 import ProjectModal from "./ProjectModal";
+import { TechBadge } from "../icons/TechIcons";
 
 const Project = () => {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -106,9 +107,11 @@ const Project = () => {
                                 variants={fadeUp}
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.3 }}
-                                className="bg-[var(--bg-card)] rounded-2xl overflow-hidden border border-[var(--border-card)] hover:border-orange-500/60 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-[0_12px_35px_rgba(249,115,22,0.18)] transition-all duration-300 group flex flex-col h-full cursor-pointer"
+                                className="relative z-10 overflow-hidden glass-card rounded-2xl hover:border-orange-500 hover:shadow-[0_14px_40px_rgba(249,115,22,0.16)] transition-all duration-300 group flex flex-col h-full cursor-pointer"
                                 onClick={() => setSelectedProject(project)}
                             >
+                                {/* Subtle top specular glass highlight */}
+                                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent pointer-events-none z-10" />
                                 <div className="relative overflow-hidden aspect-video bg-gradient-to-br from-orange-500/5 to-transparent shrink-0">
                                     <img
                                         src={project.image}
@@ -131,18 +134,20 @@ const Project = () => {
                                         {project.description}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
-                                        {project.tech.slice(0, 3).map((tech) => (
-                                            <span
+                                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-6 min-h-[34px]">
+                                        {project.tech.slice(0, 2).map((tech) => (
+                                            <TechBadge
                                                 key={tech}
-                                                className="bg-orange-500/10 text-orange-600 dark:text-orange-400 px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap"
-                                            >
-                                                {tech}
-                                            </span>
+                                                name={tech}
+                                                size="sm"
+                                            />
                                         ))}
-                                        {project.tech.length > 3 && (
-                                            <span className="bg-[var(--bg-card-alt)] text-[var(--text-muted)] px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap border border-orange-500/10">
-                                                +{project.tech.length - 3}
+                                        {project.tech.length > 2 && (
+                                            <span
+                                                title={project.tech.slice(2).join(", ")}
+                                                className="inline-flex items-center justify-center bg-orange-500/10 dark:bg-white/5 text-orange-600/90 dark:text-orange-400/90 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap border border-orange-500/20 shadow-xs hover:border-orange-500/40 transition-colors cursor-default"
+                                            >
+                                                +{project.tech.length - 2}
                                             </span>
                                         )}
                                     </div>
@@ -153,7 +158,7 @@ const Project = () => {
                                                 e.stopPropagation();
                                                 setSelectedProject(project);
                                             }}
-                                            className="w-full flex items-center justify-center gap-2 border border-orange-500/30 text-orange-500 dark:text-orange-400 hover:bg-orange-500 hover:text-white active:scale-95 px-3 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base hover:cursor-pointer transition-all duration-300 min-h-11"
+                                            className="w-full flex items-center justify-center gap-2 border border-orange-500/40 text-orange-500 dark:text-orange-400 hover:bg-orange-500 hover:text-white hover:border-orange-500 active:scale-95 px-3 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base hover:cursor-pointer transition-all duration-300 min-h-11"
                                         >
                                             View Details
                                         </button>

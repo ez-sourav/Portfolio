@@ -76,6 +76,7 @@ const portfolioData = {
             "REST APIs",
             "Firebase",
             "Supabase",
+            "JWT",
         ],
 
         toolsAndCloud: [

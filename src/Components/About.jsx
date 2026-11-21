@@ -78,7 +78,7 @@ const About = () => {
             />
 
             {/* Glow */}
-            <div className='absolute inset-0 rounded-2xl bg-orange-500/5 opacity-0 group-hover:opacity-100 transition duration-500'></div>
+            {/* <div className='absolute inset-0 rounded-2xl bg-orange-500/5 opacity-0 group-hover:opacity-100 transition duration-500'></div> */}
 
           </motion.div>
 

@@ -17,8 +17,8 @@
   --bg-card: #FFFFFF;
   --bg-card-alt: #F3EFEA;
   --bg-card-hover: #FFFFFF;
-  --bg-nav: rgba(251, 249, 245, 0.82);
-  --bg-nav-scrolled: rgba(251, 249, 245, 0.94);
+  --bg-nav: rgba(251, 249, 245, 0.70);
+  --bg-nav-scrolled: rgba(251, 249, 245, 0.82);
   --text-primary: #111827;
   --text-secondary: #4B5563;
   --text-muted: #6B7280;
@@ -28,7 +28,6 @@
   --shadow-card: 0 10px 30px -5px rgba(249, 115, 22, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
   --shadow-hover: 0 16px 36px -4px rgba(249, 115, 22, 0.20);
   --scrollbar-track: #FBF9F5;
-  --glow-opacity: 0.07;
 
   /* AI Chat in Light Mode */
   --chat-bg: #FAF7F2;
@@ -49,8 +48,8 @@
   --bg-card: #1A1A1A;
   --bg-card-alt: #141416;
   --bg-card-hover: #1E1E22;
-  --bg-nav: rgba(11, 11, 12, 0.72);
-  --bg-nav-scrolled: rgba(11, 11, 12, 0.92);
+  --bg-nav: rgba(11, 11, 12, 0.62);
+  --bg-nav-scrolled: rgba(11, 11, 12, 0.78);
   --text-primary: #FFFFFF;
   --text-secondary: #9CA3AF;
   --text-muted: #6B7280;
@@ -60,7 +59,6 @@
   --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
   --shadow-hover: 0 14px 35px rgba(249, 115, 22, 0.16);
   --scrollbar-track: #0B0B0C;
-  --glow-opacity: 0.10;
 
   /* AI Chat in Dark Mode */
   --chat-bg: #121215;
@@ -94,7 +92,46 @@ body {
 }
 
 section {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 90px;
+}
+
+/* 3D particle canvas - strictly behind all content */
+.global-particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Reusable Frosted Glass Card - matches navbar */
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: #f97316;
+}
+
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.dark .glass-card:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: #f97316;
 }
 
 /* Custom scrollbar - subtle, matches the orange accent */
@@ -134,6 +171,7 @@ button:focus-visible {
 
 /* Respect users who've asked for reduced motion at the OS level */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

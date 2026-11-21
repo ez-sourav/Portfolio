@@ -51,8 +51,10 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
+            className="relative z-10 overflow-hidden glass-card p-6 sm:p-8 rounded-2xl hover:border-orange-500 hover:shadow-[0_12px_36px_rgba(249,115,22,0.14)] transition-all duration-300"
           >
+            {/* Subtle top specular glass highlight */}
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent pointer-events-none" />
             <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4 text-[var(--text-primary)]">
               <GraduationCap size={24} className="text-orange-500 shrink-0" />
               Education
@@ -84,8 +86,10 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
+            className="relative z-10 overflow-hidden glass-card p-6 sm:p-8 rounded-2xl hover:border-orange-500 hover:shadow-[0_12px_36px_rgba(249,115,22,0.14)] transition-all duration-300"
           >
+            {/* Subtle top specular glass highlight */}
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent pointer-events-none" />
             <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-6 text-[var(--text-primary)]">
               <Award size={24} className="text-orange-500 shrink-0" />
               Relevant Coursework
@@ -107,8 +111,10 @@ const Education = () => {
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            className="bg-[var(--bg-card)] p-6 sm:p-8 rounded-2xl border border-[var(--border-card)] shadow-lg shadow-black/5 dark:shadow-black/30 hover:border-orange-500 transition-all duration-300"
+            className="relative z-10 overflow-hidden glass-card p-6 sm:p-8 rounded-2xl hover:border-orange-500 hover:shadow-[0_12px_36px_rgba(249,115,22,0.14)] transition-all duration-300"
           >
+            {/* Subtle top specular glass highlight */}
+            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 dark:via-white/15 to-transparent pointer-events-none" />
             <h3 className="flex items-center gap-3 text-xl xs:text-2xl font-semibold mb-4 text-[var(--text-primary)]">
               <Trophy size={24} className="text-orange-500 shrink-0" />
               Activities
