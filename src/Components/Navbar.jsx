@@ -1,16 +1,27 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Download, Menu, X, Sun, Moon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useTheme } from "../lib/ThemeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollDirection = useRef("none");
+  const directionAnchorY = useRef(0);
   const { isDark, toggleTheme, mounted } = useTheme();
+
+  // Smooth, physics-based scroll progress bar with Framer Motion (GPU accelerated)
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -20,6 +31,7 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -27,42 +39,121 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  // Navbar scroll behavior: hide on scroll down (only after deliberate scroll), show on scroll up (only after deliberate scroll), always show at top
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 12);
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((window.scrollY / totalHeight) * 100);
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          // Protect against iOS Safari negative bounce/overscroll
+          const safeScrollY = Math.max(0, currentScrollY);
+          setScrolled(safeScrollY > 12);
+
+          // If mobile menu is open, always keep navbar visible
+          if (isOpen) {
+            setIsVisible(true);
+            lastScrollY.current = safeScrollY;
+            ticking = false;
+            return;
+          }
+
+          // At or near top of page (<= 80px): always show navbar
+          if (safeScrollY <= 80) {
+            setIsVisible(true);
+            scrollDirection.current = "none";
+            directionAnchorY.current = safeScrollY;
+            lastScrollY.current = safeScrollY;
+            ticking = false;
+            return;
+          }
+
+          const delta = safeScrollY - lastScrollY.current;
+
+          if (delta > 0) {
+            // Scrolling DOWN
+            if (scrollDirection.current !== "down") {
+              scrollDirection.current = "down";
+              directionAnchorY.current = lastScrollY.current;
+            }
+
+            // Only hide if user has scrolled down more than 50px continuously
+            if (safeScrollY - directionAnchorY.current > 50) {
+              setIsVisible(false);
+            }
+          } else if (delta < 0) {
+            // Scrolling UP
+            if (scrollDirection.current !== "up") {
+              scrollDirection.current = "up";
+              directionAnchorY.current = lastScrollY.current;
+            }
+
+            // Only show if user has scrolled up more than 35px continuously
+            if (directionAnchorY.current - safeScrollY > 35) {
+              setIsVisible(true);
+            }
+          }
+
+          lastScrollY.current = safeScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
       }
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isOpen]);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // Smooth scroll handler when clicking any navbar link or logo
+  const handleNavClick = (e, href, name) => {
+    e.preventDefault();
+    setActive(name);
+    if (isOpen) setIsOpen(false);
+    setIsVisible(true);
+
+    if (href === "#hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", " ");
+      }
+      return;
+    }
+
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, "", href);
+      }
+    }
+  };
 
   return (
     <>
+      {/* Top Reading Progress Bar - Always fixed at the very top of the screen */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-600 via-orange-400 to-amber-300 origin-left z-[60] pointer-events-none"
+        style={{ scaleX }}
+      />
+
       <nav
-        className={`fixed top-0 left-0 w-full z-50 border-b transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 w-full z-50 border-b transform transition-all duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
+          } ${scrolled
             ? "bg-[var(--bg-nav-scrolled)] backdrop-blur-xl border-[var(--border-nav)] shadow-lg shadow-black/10 dark:shadow-black/30"
             : "bg-[var(--bg-nav)] backdrop-blur-md border-transparent"
-        }`}
+          }`}
       >
-        {/* Top Reading Progress Bar */}
-        <div
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-orange-600 via-orange-400 to-amber-300 transition-all duration-100 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
 
             {/* Logo */}
             <a
               href="#hero"
-              className="text-orange-500 font-bold text-2xl lg:text-3xl leading-tight hover:opacity-90 transition-opacity"
+              onClick={(e) => handleNavClick(e, "#hero", "")}
+              className="text-orange-500 font-bold text-2xl lg:text-3xl leading-tight hover:opacity-90 transition-opacity cursor-pointer"
             >
               Sourav Biswas
             </a>
@@ -73,22 +164,20 @@ const Navbar = () => {
                 <li key={link.name} className="relative group">
                   <a
                     href={link.href}
-                    onClick={() => setActive(link.name)}
-                    className={`font-medium transition duration-300 ${
-                      active === link.name
-                        ? "text-orange-500 font-semibold"
-                        : "text-[var(--text-secondary)] hover:text-orange-500"
-                    }`}
+                    onClick={(e) => handleNavClick(e, link.href, link.name)}
+                    className={`font-medium transition duration-300 cursor-pointer ${active === link.name
+                      ? "text-orange-500 font-semibold"
+                      : "text-[var(--text-secondary)] hover:text-orange-500"
+                      }`}
                   >
                     {link.name}
                   </a>
 
                   <span
-                    className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-orange-500 to-transparent transition-all duration-300 ${
-                      active === link.name
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-orange-500 to-transparent transition-all duration-300 ${active === link.name
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                      }`}
                   />
                 </li>
               ))}
@@ -219,22 +308,18 @@ const Navbar = () => {
                   >
                     <a
                       href={link.href}
-                      onClick={() => {
-                        setActive(link.name);
-                        setIsOpen(false);
-                      }}
-                      className={`block py-2 text-lg font-medium transition duration-300 ${
-                        active === link.name
-                          ? "text-orange-500 font-semibold"
-                          : "text-[var(--text-primary)] hover:text-orange-500"
-                      }`}
+                      onClick={(e) => handleNavClick(e, link.href, link.name)}
+                      className={`block py-2 text-lg font-medium transition duration-300 ${active === link.name
+                        ? "text-orange-500 font-semibold"
+                        : "text-[var(--text-primary)] hover:text-orange-500"
+                        }`}
                     >
                       {link.name}
                     </a>
                   </motion.li>
                 ))}
 
-                {/* Theme indicator/toggle button inside mobile drawer as well */}
+                {/* Theme indicator/toggle button inside mobile drawer */}
                 {mounted && (
                   <motion.li
                     initial={{ opacity: 0, y: -10 }}
@@ -248,7 +333,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={toggleTheme}
-                      className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/15 text-sm font-medium text-[var(--text-primary)] transition-all"
+                      className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/25 bg-orange-500/5 hover:bg-orange-500/15 text-sm font-medium text-[var(--text-primary)] transition-all cursor-pointer"
                     >
                       {isDark ? (
                         <>

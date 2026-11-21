@@ -76,6 +76,11 @@ const Hero = () => {
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.96 }}
                             href="#projects"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const el = document.getElementById("projects");
+                                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                            }}
                             className="bg-orange-500 hover:bg-orange-600 cursor-pointer w-full sm:w-auto px-6 sm:px-7 py-3 rounded-lg font-medium transition-colors text-white shadow-md shadow-orange-500/20"
                         >
                             View Projects
