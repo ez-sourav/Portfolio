@@ -41,10 +41,10 @@ const Navbar = () => {
     setActive(name);
     if (isOpen) setIsOpen(false);
 
-    if (href === "#hero") {
+    if (href === "#hero" || href === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-      if (window.history && window.history.pushState) {
-        window.history.pushState(null, "", " ");
+      if (typeof window !== "undefined" && window.history?.pushState) {
+        window.history.pushState(null, "", window.location.pathname);
       }
       return;
     }
@@ -52,7 +52,7 @@ const Navbar = () => {
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (window.history && window.history.pushState) {
+      if (typeof window !== "undefined" && window.history?.pushState) {
         window.history.pushState(null, "", href);
       }
     }
@@ -107,7 +107,7 @@ const Navbar = () => {
 
             {/* Logo with rotating gradient badge */}
             <a
-              href="#hero"
+              href="/"
               onClick={(e) => handleNavClick(e, "#hero", "")}
               className="flex cursor-pointer items-center gap-2 sm:gap-2.5 px-2 sm:px-3 text-orange-500 hover:opacity-90 transition-opacity"
             >

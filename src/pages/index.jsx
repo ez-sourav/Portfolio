@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import Hero from "../Components/Hero";
 import About from "../Components/About";
@@ -11,6 +12,34 @@ import GlobalGlow from "../Components/GlobalGlow";
 import AIChat from "../Components/ai-chat/AIChat";
 
 export default function Home() {
+  // Ensure the URL is always clean (domain only) and reloads start cleanly at top
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Prevent browser from automatically restoring previous scroll position to anchor tags on reload
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // Clean hash from URL on reload or load (e.g. #projects or #about)
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    // Ensure hash is stripped before unload / reload so browser does not stick to section
+    const handleBeforeUnload = () => {
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
   return (
     <>
       <Head>
